@@ -1,0 +1,155 @@
+<div
+  id="webcrumbs"
+  class="flex justify-center items-center min-h-screen bg-gray-100"
+>
+  <div class="w-[700px] bg-white shadow-md rounded-lg p-8 my-8">
+    <!-- Título -->
+    <h1 class="text-[#82b440] font-bold text-lg mb-6">
+      Cadastro de Vistoria Lacrada
+    </h1>
+
+    <!-- Formulário -->
+    <form class="space-y-6" (ngSubmit)="submitForm()">
+      <!-- Serviço -->
+      <div>
+        <label for="servico" class="text-neutral-900 block mb-1">Serviço</label>
+        <select
+          id="servico"
+          [(ngModel)]="selectedServico"
+          name="servico"
+          class="w-full border border-neutral-300 rounded-md p-3 focus:outline-[#82b440]"
+        >
+          <option value="" disabled selected>Selecione</option>
+          <option *ngFor="let servico of servicos" [value]="servico.id">
+            {{ servico.descricao }}
+          </option>
+        </select>
+      </div>
+
+      <!-- Município Destino -->
+      <div>
+        <label for="municipio" class="text-neutral-900 block mb-1"
+          >Município Destino</label
+        >
+        <select
+          id="municipio"
+          [(ngModel)]="municipioDestinoId"
+          name="municipio"
+          class="w-full border border-neutral-300 rounded-md p-3 focus:outline-[#82b440]"
+        >
+          <option value="" disabled selected>Selecione</option>
+          <option value="247d536a-e868-46c8-ab05-5b65a34cbc5a">
+            Município Teste
+          </option>
+        </select>
+      </div>
+
+      <!-- Arquivo da Vistoria -->
+      <div>
+        <label for="arquivo" class="text-neutral-900 block mb-1">
+          Selecione o arquivo da Vistoria
+        </label>
+        <input
+          type="file"
+          id="arquivo"
+          accept="application/pdf"
+          class="w-full border border-neutral-300 rounded-md p-3 text-neutral-500 file:font-normal file:mr-4 file:bg-neutral-50 file:border-0 file:text-neutral-900 focus:outline-[#82b440]"
+          (change)="onFileSelected($event)"
+        />
+      </div>
+
+      <!-- Pré-visualização do PDF -->
+      <div *ngIf="pdfPreviewUrl" class="mt-4">
+        <h2 class="text-lg font-semibold text-[#82b440]">Pré-visualização:</h2>
+        <embed
+          [src]="pdfPreviewUrl"
+          class="w-full h-[500px] border border-neutral-300 rounded-md"
+        />
+      </div>
+
+      <!-- Dados do Condutor -->
+      <h2 class="text-[#82b440] font-bold text-lg mt-6">Dados do Condutor</h2>
+
+      <div>
+        <label for="nomeCondutor" class="text-neutral-900 block mb-1"
+          >Nome Completo</label
+        >
+        <input
+          id="nomeCondutor"
+          type="text"
+          [(ngModel)]="nomeCondutor"
+          name="nomeCondutor"
+          class="w-full border border-neutral-300 rounded-md p-3 focus:outline-[#82b440]"
+        />
+      </div>
+
+      <div>
+        <label for="cpfCondutor" class="text-neutral-900 block mb-1">CPF</label>
+        <input
+          id="cpfCondutor"
+          type="text"
+          [(ngModel)]="cpfCondutor"
+          name="cpfCondutor"
+          class="w-full border border-neutral-300 rounded-md p-3 focus:outline-[#82b440]"
+          mask="000.000.000-00"
+        />
+      </div>
+
+      <div>
+        <label for="telefoneCondutor" class="text-neutral-900 block mb-1"
+          >Telefone</label
+        >
+        <input
+          id="telefoneCondutor"
+          type="text"
+          [(ngModel)]="telefoneCondutor"
+          name="telefoneCondutor"
+          class="w-full border border-neutral-300 rounded-md p-3 focus:outline-[#82b440]"
+          mask="(00) 00000-0000"
+        />
+      </div>
+
+      <div>
+        <label for="emailCondutor" class="text-neutral-900 block mb-1"
+          >E-mail</label
+        >
+        <input
+          id="emailCondutor"
+          type="email"
+          [(ngModel)]="emailCondutor"
+          name="emailCondutor"
+          class="w-full border border-neutral-300 rounded-md p-3 focus:outline-[#82b440]"
+        />
+      </div>
+
+      <div class="flex items-start gap-3">
+        <input type="checkbox" id="declaration" class="mt-1" />
+        <label for="declaration" class="text-neutral-900">
+          DECLARO QUE VISUALIZEI O LAUDO E QUE AS INFORMAÇÕES CONFEREM COM A
+          BASE DO DETRAN
+        </label>
+      </div>
+      <div class="flex justify-end mt-6 gap-4">
+        <button
+          type="button"
+          class="w-[150px] px-6 py-3 bg-[#ff795c] text-white rounded-md hover:bg-[#ff624c] transition"
+          [disabled]="isLoading"
+        >
+          Cancelar
+        </button>
+        <button
+          type="submit"
+          class="w-[150px] px-6 py-3 bg-[#82b440] text-white rounded-md hover:bg-green-600 flex items-center justify-center gap-2"
+          [disabled]="isLoading"
+        >
+          <span
+            *ngIf="isLoading"
+            class="iconify w-6 h-6 animate-spin"
+            data-icon="line-md:loading-twotone-loop"
+          ></span>
+          <span *ngIf="!isLoading">Avançar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

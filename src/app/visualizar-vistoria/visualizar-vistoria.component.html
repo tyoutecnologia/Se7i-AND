@@ -1,0 +1,55 @@
+<div class="flex flex-col items-start mb-5">
+  <!-- Details Section -->
+  <div class="flex justify-center items-center min-h-screen bg-gray-100">
+    <div class="w-[900px] bg-white shadow-md rounded-lg p-6 space-y-6">
+      <h1 class="text-xl font-bold text-[#0053B3]">
+        Vistoria Lacrada Concluída:
+        <span class="text-neutral-950">{{ vistoriaId }}</span>
+      </h1>
+
+      <!-- Dados da Vistoria -->
+      <section class="border border-neutral-300 rounded-lg">
+        <div
+          class="bg-[#f5f5f5] text-[#0053B3] font-bold px-4 py-2 rounded-t-lg"
+        >
+          Dados da Vistoria
+        </div>
+        <div class="p-4 space-y-2 text-neutral-950">
+          <p>Município Origem: {{ municipioOrigem }}</p>
+          <p>Status do Laudo: {{ statusLaudo }}</p>
+          <p>Nome do Proprietário Atual: {{ nomeProprietario }}</p>
+          <p>Município do Proprietário Atual: {{ municipioProprietario }}</p>
+          <p>Data do Laudo: {{ dataLaudo }}</p>
+          <p>Hora do Laudo: {{ horaLaudo }}</p>
+          <p>Placa: {{ placa }}</p>
+          <div class="flex items-center">
+            <span>Chassi: {{ chassi }}</span>
+          </div>
+          <div class="flex items-center">
+            <span>Motor: {{ motor }}</span>
+          </div>
+          <div class="flex items-center">
+            <span>Marca/Modelo: {{ marcaModelo }}</span>
+          </div>
+          <p>Cor: {{ cor }}</p>
+        </div>
+      </section>
+
+      <!-- Documentos Section -->
+      <section class="border border-neutral-300 rounded-lg">
+        <div
+          class="bg-[#f5f5f5] text-[#0053B3] font-bold px-4 py-2 rounded-t-lg"
+        >
+          Documentos
+        </div>
+        <div class="p-4 flex items-center justify-center">
+          <img
+            [src]="documentoUrl"
+            alt="Documentos"
+            class="object-contain w-[700px] h-[400px] border border-neutral-200 rounded-md"
+          />
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

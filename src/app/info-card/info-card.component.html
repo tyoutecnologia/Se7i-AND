@@ -1,0 +1,35 @@
+<div class="bg-white p-4 shadow-md rounded-md w-full max-w-md">
+  <div class="text-lg font-semibold text-center mb-4" style="color: black">
+    <p>Destino Detran</p>
+    <p>{{ detranDestino }}</p>
+  </div>
+
+  <div class="mb-4">
+    <img
+      [src]="imagem"
+      alt="Imagem de validação"
+      class="object-cover rounded-md w-full"
+    />
+  </div>
+
+  <div class="text-gray-800 text-sm space-y-2">
+    <p>
+      Funcionário: <span class="font-semibold">{{ funcionario }}</span>
+    </p>
+    <p>
+      Data Validação: <span class="font-semibold">{{ dataValidacao }}</span>
+    </p>
+    <p>
+      Horário Validação:
+      <span class="font-semibold">{{ horarioValidacao }}</span>
+    </p>
+  </div>
+
+  <button
+    class="w-full mt-4 py-2 px-4 rounded-md text-white font-semibold"
+    [ngStyle]="{ backgroundColor: color }"
+    (click)="onViewDetails()"
+  >
+    Visualizar
+  </button>
+</div>

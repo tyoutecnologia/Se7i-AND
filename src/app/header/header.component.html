@@ -1,0 +1,14 @@
+<header class="w-full bg-white py-2 px-6 flex items-center justify-between">
+  <div class="text-lg font-semibold" style="color: #82b440">
+    <span>{{ currentRoute || "Carregando..." }}</span>
+  </div>
+
+  <div class="flex items-center gap-4">
+    <span class="text-gray-600 font-medium">{{ userName || "Usuário" }}</span>
+    <button
+      class="text-black px-4 py-2 border border-black rounded-md hover:bg-black hover:text-white transition"
+    >
+      Logout
+    </button>
+  </div>
+</header>

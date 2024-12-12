@@ -1,0 +1,20 @@
+<div class="flex flex-col items-center gap-8 p-4">
+  <div class="w-[90%]">
+    <app-aguardando-aprovacao
+      (viewDetails)="openModal($event)"
+    ></app-aguardando-aprovacao>
+  </div>
+  <!-- <div class="w-[90%]">
+    <app-recusadas></app-recusadas>
+  </div>
+  <div class="w-[90%]">
+    <app-enviadas></app-enviadas>
+  </div> -->
+</div>
+
+<!-- Modal -->
+<app-modal [isOpen]="isModalOpen" (close)="closeModal()">
+  <app-visualizacao-vistoria
+    [vistoriaId]="selectedVistoriaId"
+  ></app-visualizacao-vistoria>
+</app-modal>
