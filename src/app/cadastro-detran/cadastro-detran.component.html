@@ -1,0 +1,120 @@
+<div class="flex justify-center items-center min-h-screen bg-gray-100 p-6">
+  <div class="w-[600px] bg-white shadow-lg rounded-lg p-6">
+    <h1 class="text-xl font-bold text-[#82b440] mb-6">Cadastro de Detran</h1>
+    <form (submit)="onSubmit()" class="space-y-5">
+      <div>
+        <label for="razaoSocial" class="block text-gray-800 mb-2"
+          >Razão Social</label
+        >
+        <input
+          id="razaoSocial"
+          type="text"
+          [(ngModel)]="razaoSocial"
+          name="razaoSocial"
+          class="w-full h-10 bg-gray-100 border border-gray-300 rounded-md shadow-sm px-3 focus:outline-none focus:ring-2 focus:ring-[#82b440]"
+          required
+        />
+      </div>
+
+      <div>
+        <label for="nomeFantasia" class="block text-gray-800 mb-2"
+          >Nome Fantasia</label
+        >
+        <input
+          id="nomeFantasia"
+          type="text"
+          [(ngModel)]="nomeFantasia"
+          name="nomeFantasia"
+          class="w-full h-10 bg-gray-100 border border-gray-300 rounded-md shadow-sm px-3 focus:outline-none focus:ring-2 focus:ring-[#82b440]"
+          required
+        />
+      </div>
+
+      <div>
+        <label for="cnpj" class="block text-gray-800 mb-2">CNPJ</label>
+        <input
+          id="cnpj"
+          type="text"
+          [(ngModel)]="cnpj"
+          name="cnpj"
+          mask="00.000.000/0000-00"
+          class="w-full h-10 bg-gray-100 border border-gray-300 rounded-md shadow-sm px-3 focus:outline-none focus:ring-2 focus:ring-[#82b440]"
+          required
+        />
+      </div>
+
+      <div>
+        <label for="telefone" class="block text-gray-800 mb-2">Telefone</label>
+        <input
+          id="telefone"
+          type="text"
+          [(ngModel)]="telefone"
+          name="telefone"
+          mask="(00) 00000-0000"
+          class="w-full h-10 bg-gray-100 border border-gray-300 rounded-md shadow-sm px-3 focus:outline-none focus:ring-2 focus:ring-[#82b440]"
+          required
+        />
+      </div>
+
+      <div>
+        <label for="email" class="block text-gray-800 mb-2">E-mail</label>
+        <input
+          id="email"
+          type="email"
+          [(ngModel)]="email"
+          name="email"
+          class="w-full h-10 bg-gray-100 border border-gray-300 rounded-md shadow-sm px-3 focus:outline-none focus:ring-2 focus:ring-[#82b440]"
+          required
+        />
+      </div>
+
+      <div>
+        <label for="estado" class="block text-gray-800 mb-2">Estado</label>
+        <select
+          id="estado"
+          [(ngModel)]="selectedEstado"
+          (change)="onEstadoChange()"
+          class="w-full h-10 bg-gray-100 border border-gray-300 rounded-md shadow-sm px-3 focus:outline-none focus:ring-2 focus:ring-[#82b440]"
+          required
+        >
+          <option value="" disabled>Selecione um estado</option>
+          <option *ngFor="let estado of estados" [value]="estado.id">
+            {{ estado.nome }}
+          </option>
+        </select>
+      </div>
+
+      <div>
+        <label for="municipio" class="block text-gray-800 mb-2"
+          >Município</label
+        >
+        <select
+          id="municipio"
+          [(ngModel)]="selectedMunicipio"
+          class="w-full h-10 bg-gray-100 border border-gray-300 rounded-md shadow-sm px-3 focus:outline-none focus:ring-2 focus:ring-[#82b440]"
+          [disabled]="!selectedEstado"
+          required
+        >
+          <option value="" disabled>Selecione um município</option>
+          <option *ngFor="let municipio of municipios" [value]="municipio.id">
+            {{ municipio.nome }}
+          </option>
+        </select>
+      </div>
+      <div class="flex justify-end">
+        <button
+          type="submit"
+          class="h-10 w-40 bg-[#82b440] text-white hover:bg-[#65a331] rounded-md flex items-center justify-center gap-2"
+          [disabled]="isLoading"
+        >
+          <span
+            *ngIf="isLoading"
+            class="iconify w-6 h-6 animate-spin"
+            data-icon="line-md:loading-twotone-loop"
+          ></span>
+          <span>Concluir Cadastro</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,50 @@
+<div class="flex justify-center items-center min-h-screen bg-gray-100">
+  <div class="w-[600px] bg-white rounded-lg shadow p-6 mt-[50px] mb-[50px]">
+    <h1 class="text-lg font-bold text-[#82b440] mb-2">Cadastro de Serviço</h1>
+    <hr class="border-t-2 border-[#82b440] mb-6" />
+    <form (submit)="onSubmit()" class="space-y-4">
+      <!-- Nome -->
+      <div>
+        <label for="descricao" class="text-neutral-900 block mb-1">Nome:</label>
+        <input
+          type="text"
+          id="descricao"
+          [(ngModel)]="descricao"
+          name="descricao"
+          class="w-full h-10 bg-neutral-200 rounded-md shadow-sm px-3 focus:outline-none focus:ring-2 focus:ring-[#82b440]"
+          required
+        />
+      </div>
+
+      <!-- Valor -->
+      <div>
+        <label for="valor" class="text-neutral-900 block mb-1">Valor:</label>
+        <input
+          type="number"
+          step="0.01"
+          id="valor"
+          [(ngModel)]="valor"
+          name="valor"
+          class="w-full h-10 bg-neutral-200 rounded-md shadow-sm px-3 focus:outline-none focus:ring-2 focus:ring-[#82b440]"
+          required
+        />
+      </div>
+
+      <!-- Botão -->
+      <div class="flex justify-end">
+        <button
+          type="submit"
+          class="h-10 w-40 bg-[#82b440] text-white hover:bg-[#65a331] rounded-md flex items-center justify-center gap-2"
+          [disabled]="isLoading"
+        >
+          <span
+            *ngIf="isLoading"
+            class="iconify w-6 h-6 animate-spin"
+            data-icon="line-md:loading-twotone-loop"
+          ></span>
+          <span>Concluir Cadastro</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

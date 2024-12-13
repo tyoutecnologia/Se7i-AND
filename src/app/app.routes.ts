@@ -4,22 +4,24 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LayoutComponent } from './layout/layout.component';
 import { CriarVistoriaComponent } from './criar-vistoria/criar-vistoria.component';
 import { CadastroFuncionarioComponent } from './cadastro-funcionario/cadastro-funcionario.component';
+import { CriarServicoFormComponent } from './criar-servico-form/criar-servico-form.component';
+import { CadastroCiretranComponent } from './cadastro-ciretran/cadastro-ciretran.component';
+import { CadastroDetranComponent } from './cadastro-detran/cadastro-detran.component';
 
 export const routes: Routes = [
-  // Rota de Login
   { path: 'login', component: LoginComponent },
 
-  // Rotas protegidas com Layout
   {
     path: '',
     component: LayoutComponent,
     children: [
       { path: 'dashboard', component: DashboardComponent },
-      { path: 'criar-vistoria', component: CriarVistoriaComponent }, // Nova rota
-      { path: 'cadastro-funcionario', component: CadastroFuncionarioComponent }
+      { path: 'criar-vistoria', component: CriarVistoriaComponent },
+      { path: 'cadastro-usuario', component: CadastroFuncionarioComponent },
+      { path: 'cadastro-servico', component: CriarServicoFormComponent },
+      { path: 'cadastro-ciretran', component: CadastroCiretranComponent },
+      { path: 'cadastro-detran', component: CadastroDetranComponent },
     ],
   },
-
-  // Rota padrão
   { path: '**', redirectTo: 'login' },
 ];

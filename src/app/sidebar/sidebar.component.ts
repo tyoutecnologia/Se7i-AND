@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { CommonModule } from '@angular/common'; 
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-sidebar',
@@ -22,8 +22,8 @@ export class SidebarComponent {
     if (this.roles.includes('ADMIN')) {
       this.menuItems.push(
         {
-          label: 'Cadastro e Detran',
-          route: '/detran',
+          label: 'Cadastro de Detran',
+          route: '/cadastro-detran',
           icon: 'mdi:account-multiple',
         },
         {
@@ -52,6 +52,11 @@ export class SidebarComponent {
           icon: 'mdi:account-multiple',
         },
         {
+          label: 'Cadastro de Diretor/Supervisor',
+          route: '/cadastro-usuario',
+          icon: 'mdi:account',
+        },
+        {
           label: 'Cadastro e Posto de Vistoria',
           route: '/posto-vistoria',
           icon: 'heroicons-outline:building-office',
@@ -68,7 +73,7 @@ export class SidebarComponent {
         },
         {
           label: 'Cadastro de Agente',
-          route: '/cadastro-agente',
+          route: '/cadastro-usuario',
           icon: 'mdi:account-badge-outline',
         },
         {
@@ -93,7 +98,7 @@ export class SidebarComponent {
         },
         {
           label: 'Cadastro de Funcionário',
-          route: '/cadastro-funcionario',
+          route: '/cadastro-usuario',
           icon: 'mdi:account',
         },
       );
