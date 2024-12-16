@@ -1,12 +1,9 @@
 <div id="webcrumbs" class="h-screen flex flex-col lg:flex-row">
-  <!-- Div Verde - Responsiva -->
   <div class="w-full lg:w-1/2 h-1/2 lg:h-full bg-[#8CC63E]"></div>
 
-  <!-- Div Branca - Responsiva -->
   <div
     class="w-full lg:w-1/2 h-1/2 lg:h-full flex flex-col items-center justify-center p-8 bg-white space-y-12"
   >
-    <!-- Logo -->
     <div>
       <img
         src="../../assets/images/lodoADN.png"
@@ -17,19 +14,16 @@
       />
     </div>
 
-    <!-- Texto de Boas-Vindas -->
     <p class="text-neutral-950 text-center">
       Seja bem vindo(a), este é o sistema de Vistorias Lacradas. Faça seu login
       abaixo:
     </p>
 
-    <!-- Formulário -->
     <form
       class="w-full max-w-md flex flex-col gap-8"
       (ngSubmit)="onSubmit()"
       #loginForm="ngForm"
     >
-      <!-- Campo de Email -->
       <div class="flex items-center bg-neutral-200 rounded-md">
         <span class="px-3 text-neutral-500 material-symbols-outlined"
           >person</span
@@ -44,7 +38,6 @@
         />
       </div>
 
-      <!-- Campo de Senha -->
       <div class="flex items-center bg-neutral-200 rounded-md">
         <span class="px-3 text-neutral-500 material-symbols-outlined"
           >lock</span
@@ -59,13 +52,11 @@
         />
       </div>
 
-      <!-- Checkbox -->
       <div class="flex items-center">
         <input type="checkbox" id="remember-me" class="mr-2" />
         <label for="remember-me" class="text-neutral-950">LEMBRAR-ME</label>
       </div>
 
-      <!-- Botão Login Gov.br -->
       <button
         type="button"
         class="w-full bg-[#0053B3] text-white rounded-md py-2 !bg-[#0053B3]"
@@ -73,15 +64,19 @@
         Entrar com gov.br
       </button>
 
-      <!-- Ações de Recuperação de Senha -->
       <div class="flex items-center justify-between text-sm text-neutral-500">
         <a href="#" class="hover:underline">SENHA PERDIDA</a>
         <button
           type="submit"
-          class="bg-[#8CC63E] text-white rounded-md py-2 px-8 !bg-[#8CC63E]"
-          [disabled]="!loginForm.valid"
+          class="bg-[#8CC63E] text-white rounded-md py-2 px-8 !bg-[#8CC63E] flex items-center justify-center gap-2"
+          [disabled]="isLoading || !loginForm.valid"
         >
-          ENTRAR
+          <span
+            *ngIf="isLoading"
+            class="iconify w-6 h-6 animate-spin"
+            data-icon="line-md:loading-twotone-loop"
+          ></span>
+          <span *ngIf="!isLoading">Entrar</span>
         </button>
       </div>
     </form>

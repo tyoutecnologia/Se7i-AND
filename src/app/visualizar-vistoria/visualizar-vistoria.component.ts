@@ -7,10 +7,13 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-visualizacao-vistoria',
   standalone: true,
+  imports: [CommonModule],
   templateUrl: './visualizar-vistoria.component.html',
   styleUrls: ['./visualizar-vistoria.component.css'],
 })
@@ -30,8 +33,12 @@ export class VisualizacaoVistoriaComponent implements OnChanges {
   marcaModelo: string = '';
   cor: string = '';
   documentoUrl: string = '';
+  statusAprovacao: string = '';
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private toastr: ToastrService,
+  ) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['vistoriaId'] && changes['vistoriaId'].currentValue) {
@@ -42,7 +49,7 @@ export class VisualizacaoVistoriaComponent implements OnChanges {
   fetchVistoriaDetails(): void {
     const token = localStorage.getItem('access_token');
     if (!token) {
-      console.error('Token not found.');
+      this.toastr.error('Token não encontrado. Faça login novamente.');
       return;
     }
 
@@ -68,11 +75,56 @@ export class VisualizacaoVistoriaComponent implements OnChanges {
           this.marcaModelo = response.marca_modelo;
           this.cor = response.cor_veiculo;
           this.documentoUrl = response.arquivos[0]?.caminho_arquivo || '';
+          this.statusAprovacao = response.status_aprovacao;
         },
         error: (error) => {
-          console.error('Failed to fetch vistoria details:', error);
+          console.error('Erro ao buscar detalhes da vistoria:', error);
         },
       });
+  }
+
+  atualizarStatusAprovacao(status: string): void {
+    const token = localStorage.getItem('access_token');
+    if (!token) {
+      this.toastr.error('Token não encontrado. Faça login novamente.');
+      return;
+    }
+
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    });
+
+    const body = {
+      status_aprovacao: status,
+    };
+
+    this.http
+      .patch(
+        `http://se7i2.ddns.net:3090/vistorias/${this.vistoriaId}/status-aprovacao`,
+        body,
+        { headers },
+      )
+      .subscribe({
+        next: () => {
+          this.toastr.success(
+            `Vistoria ${status === 'APROVADA' ? 'aprovada' : 'recusada'} com sucesso!`,
+          );
+          this.statusAprovacao = status;
+        },
+        error: (error) => {
+          console.error('Erro ao atualizar status da vistoria:', error);
+          this.toastr.error('Erro ao atualizar o status. Tente novamente.');
+        },
+      });
+  }
+
+  iniciarAprovacao(): void {
+    this.atualizarStatusAprovacao('APROVADA');
+  }
+
+  iniciarRecusa(): void {
+    this.atualizarStatusAprovacao('RECUSADA');
   }
 
   onBack(): void {

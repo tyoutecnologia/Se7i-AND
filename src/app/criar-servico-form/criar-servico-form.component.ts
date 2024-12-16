@@ -2,11 +2,12 @@ import { Component, ChangeDetectorRef } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { CommonModule } from '@angular/common'; // Importar CommonModule
 
 @Component({
   selector: 'app-criar-servico-form',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule], // Adicionar CommonModule aqui
   templateUrl: './criar-servico-form.component.html',
   styleUrls: ['./criar-servico-form.component.css'],
 })

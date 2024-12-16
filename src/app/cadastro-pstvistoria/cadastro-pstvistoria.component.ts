@@ -6,14 +6,13 @@ import { CommonModule } from '@angular/common';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 
 @Component({
-  selector: 'app-cadastro-detran',
+  selector: 'app-cadastro-pstvistoria',
   standalone: true,
   imports: [FormsModule, CommonModule, NgxMaskDirective, NgxMaskPipe],
   providers: [provideNgxMask()],
-  templateUrl: './cadastro-detran.component.html',
-  styleUrls: ['./cadastro-detran.component.css'],
+  templateUrl: './cadastro-pstvistoria.component.html',
 })
-export class CadastroDetranComponent {
+export class CadastroPstvistoriaComponent {
   isLoading: boolean = false;
   razaoSocial: string = '';
   nomeFantasia: string = '';
@@ -27,6 +26,7 @@ export class CadastroDetranComponent {
   complemento: string = '';
   selectedEstado: string = '';
   selectedMunicipio: string = '';
+  numeroCredenciamento: string = ''; // Novo campo
   estados: Array<{ id: string; nome: string; sigla: string }> = [];
   municipios: Array<{ id: string; nome: string }> = [];
   observacao: string = '';
@@ -121,9 +121,10 @@ export class CadastroDetranComponent {
       cnpj: this.cnpj.replace(/\D/g, ''),
       telefone: this.telefone.replace(/\D/g, ''),
       observacao: this.observacao,
+      numero_credenciamento: this.numeroCredenciamento, // Inclui no payload
       endereco: {
         rua: this.rua,
-        numero: Number(this.numero), 
+        numero: Number(this.numero),
         bairro: this.bairro,
         complemento: this.complemento,
         cep: this.cep.replace(/\D/g, ''),
@@ -134,16 +135,18 @@ export class CadastroDetranComponent {
 
     const headers = this.getAuthHeaders();
     this.http
-      .post('http://se7i2.ddns.net:3090/detrans', payload, { headers })
+      .post('http://se7i2.ddns.net:3090/postos-vistoria', payload, { headers })
       .subscribe({
         next: () => {
-          this.toastr.success('Detran cadastrado com sucesso!');
+          this.toastr.success('Posto de Vistoria cadastrado com sucesso!');
           this.isLoading = false;
           this.resetForm();
         },
         error: (error) => {
           console.error(error);
-          this.toastr.error('Erro ao cadastrar o Detran. Tente novamente.');
+          this.toastr.error(
+            'Erro ao cadastrar o posto de vistoria. Tente novamente.',
+          );
           this.isLoading = false;
         },
       });
@@ -157,7 +160,8 @@ export class CadastroDetranComponent {
       this.telefone.trim() !== '' &&
       this.email.trim() !== '' &&
       this.selectedEstado.trim() !== '' &&
-      this.selectedMunicipio.trim() !== ''
+      this.selectedMunicipio.trim() !== '' &&
+      this.numeroCredenciamento.trim() !== ''
     );
   }
 
@@ -173,6 +177,7 @@ export class CadastroDetranComponent {
     this.bairro = '';
     this.complemento = '';
     this.cep = '';
+    this.numeroCredenciamento = '';
     this.selectedEstado = '';
     this.selectedMunicipio = '';
     this.municipios = [];

@@ -7,6 +7,7 @@ import { CadastroFuncionarioComponent } from './cadastro-funcionario/cadastro-fu
 import { CriarServicoFormComponent } from './criar-servico-form/criar-servico-form.component';
 import { CadastroCiretranComponent } from './cadastro-ciretran/cadastro-ciretran.component';
 import { CadastroDetranComponent } from './cadastro-detran/cadastro-detran.component';
+import { CadastroPstvistoriaComponent } from './cadastro-pstvistoria/cadastro-pstvistoria.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -21,6 +22,7 @@ export const routes: Routes = [
       { path: 'cadastro-servico', component: CriarServicoFormComponent },
       { path: 'cadastro-ciretran', component: CadastroCiretranComponent },
       { path: 'cadastro-detran', component: CadastroDetranComponent },
+      { path: 'cadastro-pstvistoria', component: CadastroPstvistoriaComponent },
     ],
   },
   { path: '**', redirectTo: 'login' },

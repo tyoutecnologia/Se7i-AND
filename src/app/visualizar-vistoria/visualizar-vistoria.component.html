@@ -2,15 +2,15 @@
   <!-- Details Section -->
   <div class="flex justify-center items-center min-h-screen bg-gray-100">
     <div class="w-[900px] bg-white shadow-md rounded-lg p-6 space-y-6">
-      <h1 class="text-xl font-bold text-[#0053B3]">
+      <h1 class="text-xl font-bold text-[#636363]">
         Vistoria Lacrada Concluída:
-        <span class="text-neutral-950">{{ vistoriaId }}</span>
+        <span class="text-[#636363]">{{ vistoriaId }}</span>
       </h1>
 
       <!-- Dados da Vistoria -->
       <section class="border border-neutral-300 rounded-lg">
         <div
-          class="bg-[#f5f5f5] text-[#0053B3] font-bold px-4 py-2 rounded-t-lg"
+          class="bg-[#f5f5f5] text-[#636363] font-bold px-4 py-2 rounded-t-lg"
         >
           Dados da Vistoria
         </div>
@@ -38,7 +38,7 @@
       <!-- Documentos Section -->
       <section class="border border-neutral-300 rounded-lg">
         <div
-          class="bg-[#f5f5f5] text-[#0053B3] font-bold px-4 py-2 rounded-t-lg"
+          class="bg-[#f5f5f5] text-[#636363] font-bold px-4 py-2 rounded-t-lg"
         >
           Documentos
         </div>
@@ -50,6 +50,25 @@
           />
         </div>
       </section>
+
+      <!-- Botões de Aprovação e Recusa -->
+      <div
+        class="flex justify-end mt-6"
+        *ngIf="statusAprovacao === 'EM_ANALISE'"
+      >
+        <button
+          (click)="iniciarRecusa()"
+          class="h-10 w-40 bg-[#ff4d4d] text-white hover:bg-[#e03e3e] rounded-md flex items-center justify-center gap-2"
+        >
+          Iniciar Recusa
+        </button>
+        <button
+          (click)="iniciarAprovacao()"
+          class="h-10 w-40 bg-[#82b440] text-white hover:bg-[#65a331] rounded-md flex items-center justify-center gap-2 ml-4"
+        >
+          Iniciar Aprovação
+        </button>
+      </div>
     </div>
   </div>
 </div>

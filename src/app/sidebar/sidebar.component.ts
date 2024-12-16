@@ -78,7 +78,7 @@ export class SidebarComponent {
         },
         {
           label: 'Cadastro de Posto de Vistoria',
-          route: '/posto-vistoria',
+          route: '/cadastro-pstvistoria',
           icon: 'heroicons-outline:building-office',
         },
       );

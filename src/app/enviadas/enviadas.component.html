@@ -5,15 +5,17 @@
   <!-- Linha Divisória -->
   <hr class="border-[#ff795c] border-2 mb-2" />
 
-  <!-- Conteúdo do Card -->
-  <div class="text-gray-600">
+  <!-- Lista de Cards -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
     <app-info-card
-      [detranDestino]="'Detran Minas Gerais'"
+      *ngFor="let vistoria of vistorias"
+      [detranDestino]="getDetranNome(vistoria.detran_destino_id)"
       [imagem]="'../../assets/images/placa.png'"
-      [funcionario]="'Carlos Pereira'"
-      [dataValidacao]="'10/12/2023'"
-      [horarioValidacao]="'15:45:00'"
+      [funcionario]="vistoria.nome_proprietario"
+      [dataValidacao]="vistoria.data_validacao"
+      [horarioValidacao]="vistoria.hora_laudo"
       [color]="'#ff795c'"
+      (viewDetails)="onViewDetails(vistoria.id)"
     ></app-info-card>
   </div>
 </div>

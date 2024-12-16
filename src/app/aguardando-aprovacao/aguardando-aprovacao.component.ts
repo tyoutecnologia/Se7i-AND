@@ -10,10 +10,10 @@ import { CommonModule } from '@angular/common';
   templateUrl: './aguardando-aprovacao.component.html',
 })
 export class AguardandoAprovacaoComponent implements OnInit {
-  @Output() viewDetails = new EventEmitter<string>(); // Emite o ID da vistoria
+  @Output() viewDetails = new EventEmitter<string>();
 
-  vistorias: Array<any> = []; // Lista de vistorias
-  detranNomes: { [key: string]: string } = {}; // Cache para nomes dos Detrans
+  vistorias: Array<any> = []; 
+  detranNomes: { [key: string]: string } = {}; 
 
   constructor(private http: HttpClient) {}
 
@@ -51,7 +51,7 @@ export class AguardandoAprovacaoComponent implements OnInit {
 
   fetchDetranNome(detranId: string): void {
     if (this.detranNomes[detranId]) {
-      return; // Já temos o nome em cache
+      return;
     }
 
     const token = localStorage.getItem('access_token');

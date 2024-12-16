@@ -1,7 +1,7 @@
 <div class="flex justify-center items-center min-h-screen bg-gray-100 p-6">
   <div class="w-full max-w-md bg-white shadow-lg rounded-lg p-6">
     <h1 class="text-xl font-bold text-[#82b440] mb-6 text-center">
-      Cadastro de Detran
+      Cadastro Posto de Vistoria
     </h1>
     <form (submit)="onSubmit()" class="space-y-5">
       <div>
@@ -164,6 +164,19 @@
           [(ngModel)]="complemento"
           name="complemento"
           class="w-full h-10 bg-gray-100 border border-gray-300 rounded-md shadow-sm px-3 focus:outline-none focus:ring-2 focus:ring-[#82b440]"
+        />
+      </div>
+      <div>
+        <label for="numeroCredenciamento" class="block text-gray-800 mb-2"
+          >Número de Credenciamento</label
+        >
+        <input
+          id="numeroCredenciamento"
+          type="text"
+          [(ngModel)]="numeroCredenciamento"
+          name="numeroCredenciamento"
+          class="w-full h-10 bg-gray-100 border border-gray-300 rounded-md shadow-sm px-3 focus:outline-none focus:ring-2 focus:ring-[#82b440]"
+          required
         />
       </div>
       <!-- Botão -->

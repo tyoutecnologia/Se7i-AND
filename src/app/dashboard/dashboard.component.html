@@ -4,15 +4,13 @@
       (viewDetails)="openModal($event)"
     ></app-aguardando-aprovacao>
   </div>
-  <!-- <div class="w-[90%]">
-    <app-recusadas></app-recusadas>
+  <div class="w-[90%]">
+    <app-enviadas (viewDetails)="openModal($event)"></app-enviadas>
   </div>
   <div class="w-[90%]">
-    <app-enviadas></app-enviadas>
-  </div> -->
+    <app-recusadas (viewDetails)="openModal($event)"></app-recusadas>
+  </div>
 </div>
-
-<!-- Modal -->
 <app-modal [isOpen]="isModalOpen" (close)="closeModal()">
   <app-visualizacao-vistoria
     [vistoriaId]="selectedVistoriaId"
