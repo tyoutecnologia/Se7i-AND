@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { AuthService } from '../auth.service'; // Importe o AuthService
 
 @Component({
   selector: 'app-header',
@@ -20,7 +21,11 @@ export class HeaderComponent implements OnInit {
     '/app/relatorio': 'Relatório',
   };
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+  ) {
+    // Injeção do AuthService
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((event: any) => {
@@ -35,5 +40,10 @@ export class HeaderComponent implements OnInit {
     } else {
       this.userName = 'Usuário'; // Fallback se o usuário não estiver logado
     }
+  }
+
+  // Método para logout
+  logout(): void {
+    this.authService.logout(); // Chama o método de logout do AuthService
   }
 }

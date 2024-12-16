@@ -1,9 +1,11 @@
 <div class="bg-white p-4 shadow-md rounded-md">
   <!-- Título -->
-  <h2 class="text-lg font-semibold text-[#82b440] mb-2">Enviada</h2>
+  <h2 class="text-lg font-semibold text-[#636363] mb-2">
+    Aguardanndo Aprovação
+  </h2>
 
   <!-- Linha Divisória -->
-  <hr class="border-[#82b440] border-2 mb-2" />
+  <hr class="border-[#636363] border-2 mb-2" />
 
   <!-- Lista de Cards -->
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -14,7 +16,7 @@
       [funcionario]="vistoria.nome_proprietario"
       [dataValidacao]="vistoria.data_validacao"
       [horarioValidacao]="vistoria.hora_laudo"
-      [color]="'#82b440'"
+      [color]="'#636363'"
       (viewDetails)="onViewDetails(vistoria.id)"
     ></app-info-card>
   </div>

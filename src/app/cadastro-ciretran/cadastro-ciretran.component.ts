@@ -4,11 +4,12 @@ import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../auth.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-cadastro-ciretran',
   standalone: true,
-  imports: [FormsModule, NgxMaskDirective, NgxMaskPipe],
+  imports: [FormsModule, NgxMaskDirective, NgxMaskPipe, CommonModule],
   providers: [provideNgxMask()],
   templateUrl: './cadastro-ciretran.component.html',
   styleUrls: ['./cadastro-ciretran.component.css'],

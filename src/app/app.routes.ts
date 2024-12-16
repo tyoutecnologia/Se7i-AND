@@ -8,6 +8,7 @@ import { CriarServicoFormComponent } from './criar-servico-form/criar-servico-fo
 import { CadastroCiretranComponent } from './cadastro-ciretran/cadastro-ciretran.component';
 import { CadastroDetranComponent } from './cadastro-detran/cadastro-detran.component';
 import { CadastroPstvistoriaComponent } from './cadastro-pstvistoria/cadastro-pstvistoria.component';
+import { AuthGuard } from './auth.guard'; // Importa o guard
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -15,6 +16,7 @@ export const routes: Routes = [
   {
     path: '',
     component: LayoutComponent,
+    canActivate: [AuthGuard], // Protege as rotas com o AuthGuard
     children: [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'criar-vistoria', component: CriarVistoriaComponent },

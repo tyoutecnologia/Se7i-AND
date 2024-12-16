@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { Router } from '@angular/router'; // Importe o Router
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,10 @@ export class AuthService {
   private currentUserSubject = new BehaviorSubject<any>(null);
   public currentUser$ = this.currentUserSubject.asObservable();
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+  ) {} // Injeção do Router
 
   login(email: string, senha: string): Observable<any> {
     const payload = { email, senha };
@@ -35,6 +39,7 @@ export class AuthService {
       localStorage.removeItem('roles'); // Remove os papéis
     }
     this.currentUserSubject.next(null);
+    this.router.navigate(['/login']); // Redireciona para o login
   }
 
   getToken(): string | null {

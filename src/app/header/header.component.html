@@ -7,6 +7,7 @@
     <span class="text-gray-600 font-medium">{{ userName || "Usuário" }}</span>
     <button
       class="text-black px-4 py-2 border border-black rounded-md hover:bg-black hover:text-white transition"
+      (click)="logout()"
     >
       Logout
     </button>
