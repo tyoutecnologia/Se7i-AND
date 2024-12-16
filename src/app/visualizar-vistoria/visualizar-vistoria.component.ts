@@ -9,6 +9,7 @@ import {
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../auth.service'; // Importar AuthService
 
 @Component({
   selector: 'app-visualizacao-vistoria',
@@ -34,16 +35,22 @@ export class VisualizacaoVistoriaComponent implements OnChanges {
   cor: string = '';
   documentoUrl: string = '';
   statusAprovacao: string = '';
+  isOperadorCiretran: boolean = false; // Flag para verificar role do usuário
 
   constructor(
     private http: HttpClient,
     private toastr: ToastrService,
+    private authService: AuthService, // Injetar AuthService
   ) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['vistoriaId'] && changes['vistoriaId'].currentValue) {
       this.fetchVistoriaDetails();
     }
+  }
+
+  ngOnInit(): void {
+    this.checkRole();
   }
 
   fetchVistoriaDetails(): void {
@@ -125,6 +132,11 @@ export class VisualizacaoVistoriaComponent implements OnChanges {
 
   iniciarRecusa(): void {
     this.atualizarStatusAprovacao('RECUSADA');
+  }
+
+  checkRole(): void {
+    const roles = this.authService.getRoles();
+    this.isOperadorCiretran = roles?.includes('OPERADOR_CIRETRAN') || false;
   }
 
   onBack(): void {

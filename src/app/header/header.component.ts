@@ -14,11 +14,14 @@ export class HeaderComponent implements OnInit {
   userName: string = '';
 
   routeMap: { [key: string]: string } = {
-    '/app/dashboard': 'Vistorias Lacradas',
-    '/app/ciretran': 'Cadastro de Ciretran / Departamento',
-    '/app/diretor': 'Cadastro de Diretor / Supervisor',
-    '/app/posto': 'Cadastro de Posto de Vistoria',
-    '/app/relatorio': 'Relatório',
+    '/dashboard': 'Vistorias Lacradas',
+    '/cadastro-ciretran': 'Cadastro de Ciretran / Departamento',
+    '/diretor': 'Cadastro de Diretor / Supervisor',
+    '/cadastro-pstvistoria': 'Cadastro de Posto de Vistoria',
+    '/criar-vistoria': 'Criar Vistoria',
+    '/cadastro-usuario': 'Criar Usúario',
+    '/cadastro-servico': 'Cadastrar Serviço',
+    '/cadastro-detran': 'Cadastro Detran',
   };
 
   constructor(

@@ -54,7 +54,7 @@
       <!-- Botões de Aprovação e Recusa -->
       <div
         class="flex justify-end mt-6"
-        *ngIf="statusAprovacao === 'EM_ANALISE'"
+        *ngIf="statusAprovacao === 'EM_ANALISE' && isOperadorCiretran"
       >
         <button
           (click)="iniciarRecusa()"
